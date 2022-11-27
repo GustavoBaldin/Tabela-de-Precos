@@ -114,8 +114,36 @@ public class TabelaDePrecos {
 	public int inserirProduto(Produto produto) // method overloading
 										
 	{
-		// TO-DO
-		return 0;
+		int retorno = 3;
+		for (int i = 0; i < produtos.size(); i++) {
+			if (produtos.get(i).getCodigo() == produto.getCodigo()) {
+				System.out.println("ERRO: O produto informado já existe.");
+				retorno = 2;
+				break;
+			}
+		}
+		
+		
+		if (retorno != 2) {	
+			try {
+				
+				produtos.add(produto);
+				System.out.println("SUCESSO: O produto foi adicionado na lista.");
+				retorno = 0;
+			}
+			catch (ArrayIndexOutOfBoundsException e) {
+				System.out.println("ERRO: A lista de produtos infelizmente está cheia. (" + e.getMessage() + ")");
+				retorno = 1;
+			}
+			catch (Exception e) {
+				System.out.println("ERRO: Algum erro de origem desconhecida aconteceu. (" + e.getMessage() + ")");
+			}
+			finally {
+				System.out.println("Operação finalizada.");
+			}
+		}
+		
+		return retorno;
 	}
 	
 	/**
