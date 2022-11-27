@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Class that implements an product price table.
+ * Classe que implementa o preço de um produto na tabela.
+ * Universidade de Caxias do Sul (UCS). Sob as ordens do professor Marcos.
  * 
  *
- * @author Marcos & Gustavo Baldin
+ * @author Gustavo Baldin
  * @version 27/11/2022
  */
 
@@ -19,9 +20,9 @@ public class TabelaDePrecos {
 	
 
 	/**
-	 * Constructor that initializes a TabelaDePrecos with predefined size 
+	 * Construtor que inicializa a TabelaDePrecos com um tamanho pré-definido 
 	 *
-	 * @param capacidade - The max capacity of the table
+	 * @param capacidade - A máxima capacidade da tabela
 	 */
 	public TabelaDePrecos(int capacidade)
 	{
@@ -29,11 +30,11 @@ public class TabelaDePrecos {
 	}
 
 	/**
-	 * Method that return a product price when has given its code. 
+	 * Método que retorna o preço de um produto quando dado seu código.
 	 *
-	 * @param codigo - The product's code that you want to get the price
-	 * @return The price of the product in accord with the given code; if it returns
-	 * nothing (the product doesn't exists) the method will return -1
+	 * @param codigo - Código do produto cujo qual queira saber o preço.
+	 * @return De acordo com o resultado, retorna um valor diferente; se o produto
+	 * não existe, ele retorna -1.
 	 */
 	public double getPrecoDoProduto(int codigo)
 	{
@@ -48,15 +49,15 @@ public class TabelaDePrecos {
 	}
 
 	/**
-	* Method that inserts a product into the table
+	* Método que insere um produto dentro de uma tabela.
 
-	* @param code - The product's code
-	* @param price - The price of the product
-	* @param descricao - The description of the product
-	* @return An integer informing the insertion status: 0 - insertion
-	* happened without problems; 1- insertion did not happen because the table was full;
-	* 2- insertion did not happen because there was already a product in the table with the code
-	* informed
+	* @param code - Código do produto
+	* @param price - Preço do produto
+	* @param descricao - Descrição do produto
+	* @return Um inteiro informando a situação da inserção: 
+	* 0 - a inserção aconteceu sem problemas.
+	* 1 - inserção não aconteceu porque a tabela estava cheia.
+	* 2 - inserção não aconteceu porque já tem um produto com este código na tabela.
 	 */
 	public int inserirProduto(int codigo, double preco, String descricao)
 	{
@@ -103,13 +104,13 @@ public class TabelaDePrecos {
 	}
 	
 	/**
-	* Method that inserts a product into the table
+	* Método que insere direto um objeto do tipo Produto dentro da tabela
 	* 
-	* @param product - The Product object to be included in the table
-	* @return An integer informing the insertion status: 0 - insertion
-	* happened without problems; 1- insertion did not happen because the table was full;
-	* 2- insertion did not happen because there was already a product in the table with the code
-	* informed
+	* @param produto - O objeto do produto a ser inserido na tabela.
+	* @return Um inteiro informando a situação da inserção: 
+	* 0 - a inserção aconteceu sem problemas.
+	* 1 - inserção não aconteceu porque a tabela estava cheia.
+	* 2 - inserção não aconteceu porque já tem um produto com este código na tabela.
 	 */
 	public int inserirProduto(Produto produto) // method overloading
 										
@@ -147,13 +148,19 @@ public class TabelaDePrecos {
 	}
 	
 	/**
-	 * Method that removes a product from the table
+	 * Método que remove um produto da tabela.
 	 *
-	 * @param codigo - The code of the product that should be removed
+	 * @param codigo - Código do produto que será removido, se encontrado.
 	 */
 	public void removerProduto(int codigo)
 	{
-		// TO-DO
+		Produto produto = null;
+		for (int i = 0; i < produtos.size(); i++) {
+			if (produtos.get(i).getCodigo() == codigo) {
+				produto = produtos.get(i);
+			}
+		}
+		produtos.remove(produto);
 	}
 	
 	
