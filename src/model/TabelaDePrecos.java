@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Class that implements an product price table.
@@ -14,6 +15,7 @@ public class TabelaDePrecos {
 
 	private int capacidade;
 	private ArrayList<Produto> produtos = new ArrayList<Produto>(capacidade);
+	private Scanner in = new Scanner(System.in);
 	
 
 	/**
@@ -58,8 +60,46 @@ public class TabelaDePrecos {
 	 */
 	public int inserirProduto(int codigo, double preco, String descricao)
 	{
-		// TO-DO
-		return 0;
+		int retorno = 3;
+		System.out.println("Informe o código do produto: ");
+		codigo = in.nextInt();
+		System.out.println("Informe o preço do produto: ");
+		preco = in.nextDouble();
+		in.nextLine();
+		System.out.println("Informe a descrição do produto: ");
+		descricao = in.nextLine();
+		
+		Produto novoProduto = new Produto(codigo, preco, descricao);
+
+		for (int i = 0; i < produtos.size(); i++) {
+			if (produtos.get(i).getCodigo() == codigo) {
+				System.out.println("ERRO: O produto informado já existe.");
+				retorno = 2;
+				break;
+			}
+		}
+		
+		
+		if (retorno != 2) {	
+			try {
+				
+				produtos.add(novoProduto);
+				System.out.println("SUCESSO: O produto foi adicionado na lista.");
+				retorno = 0;
+			}
+			catch (ArrayIndexOutOfBoundsException e) {
+				System.out.println("ERRO: A lista de produtos infelizmente está cheia. (" + e.getMessage() + ")");
+				retorno = 1;
+			}
+			catch (Exception e) {
+				System.out.println("ERRO: Algum erro de origem desconhecida aconteceu. (" + e.getMessage() + ")");
+			}
+			finally {
+				System.out.println("Operação finalizada.");
+			}
+		}
+		
+		return retorno;
 	}
 	
 	/**
