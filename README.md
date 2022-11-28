@@ -1,6 +1,4 @@
-# Tabela-de-Precos
-Uma loja desenvolvida para a disciplina de POO da UCS
-
+# Tabela de Preços
 Trata-se de um trabalho desenvolvido em .java para a disciplna de Programação Orientada a Objetos da Universidade de Caxias do Sul (UCS).
 
 O projeto é feito de uma loja que efetua operações de streaming (persistência, ou seja, leva dados do programa para arquivos de texto, neste caso).
