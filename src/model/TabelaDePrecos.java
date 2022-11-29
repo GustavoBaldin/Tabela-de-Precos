@@ -164,6 +164,13 @@ public class TabelaDePrecos {
 		System.out.println("SUCESSO: Produto removido.");
 	}
 	
+	/**
+	 * Método que, dada uma palavra chave, procura na descrição de algum objeto se ela existe e retorna
+	 * o objeto em forma de Array para ser usado.
+	 * 
+	 * @param chave - Palavra-Chave em String para ser pesquisada
+	 * @return Uma ArrayList simples com o objeto selecionado nos loops.
+	 */
 	
 
 	public ArrayList<Produto> pesquisaPorPalavraChave(String chave)
