@@ -161,13 +161,23 @@ public class TabelaDePrecos {
 			}
 		}
 		produtos.remove(produto);
+		System.out.println("SUCESSO: Produto removido.");
 	}
 	
 	
+
 	public ArrayList<Produto> pesquisaPorPalavraChave(String chave)
 	{
 		ArrayList<Produto> temp = new ArrayList<Produto>(capacidade);
-			
+		Produto novoProduto = null;
+		
+		for (int i = 0; i < produtos.size(); i++) {
+			if (chave.equals(produtos.get(i).getDescricao())) {
+				novoProduto = new Produto(produtos.get(i).getCodigo(), produtos.get(i).getPreco(), 
+						produtos.get(i).getDescricao());
+			}
+		}
+		temp.add(novoProduto);
 		
 		return temp;
 	}
