@@ -59,7 +59,7 @@ public class TabelaDePrecos {
 	* 1 - inserção não aconteceu porque a tabela estava cheia.
 	* 2 - inserção não aconteceu porque já tem um produto com este código na tabela.
 	 */
-	public int inserirProduto(int codigo, double preco, String descricao)
+	public int inserirProduto(int codigo, double preco, String descricao, int tipo)
 	{
 		int retorno = 3;
 		System.out.println("Informe o código do produto: ");
@@ -69,8 +69,30 @@ public class TabelaDePrecos {
 		in.nextLine();
 		System.out.println("Informe a descrição do produto: ");
 		descricao = in.nextLine();
+		System.out.println("Escolha o tipo do produto: \n1 - Produto Digital, 2 - Produto Tributável, "
+				+ "3 - Produto Não Tributável");
+		tipo = in.nextInt();
 		
-		Produto novoProduto = new Produto(codigo, preco, descricao);
+		Produto novoProduto = null;
+		
+		switch (tipo) {
+			case 1: 	
+				novoProduto = new ProdutoDigital(codigo, preco, descricao, tipo);
+				break;
+				
+			case 2:
+				novoProduto = new ProdutoTributavel(codigo, preco, descricao, tipo);
+				break;
+				
+			case 3:
+				novoProduto = new ProdutoNaoTributavel(codigo, preco, descricao, tipo);
+				break;
+			
+			default:
+				break;
+			
+		}
+		
 
 		for (int i = 0; i < produtos.size(); i++) {
 			if (produtos.get(i).getCodigo() == codigo) {
@@ -179,9 +201,17 @@ public class TabelaDePrecos {
 		Produto novoProduto = null;
 		
 		for (int i = 0; i < produtos.size(); i++) {
-			if (chave.equals(produtos.get(i).getDescricao())) {
-				novoProduto = new Produto(produtos.get(i).getCodigo(), produtos.get(i).getPreco(), 
-						produtos.get(i).getDescricao());
+			if (chave.equals(produtos.get(i).getDescricao()) && produtos.get(i).getTipo() == 1) {
+				novoProduto = new ProdutoDigital(produtos.get(i).getCodigo(), produtos.get(i).getPreco(), 
+						produtos.get(i).getDescricao(), produtos.get(i).getTipo());
+			}
+			else if (chave.equals(produtos.get(i).getDescricao()) && produtos.get(i).getTipo() == 2) {
+				novoProduto = new ProdutoTributavel(produtos.get(i).getCodigo(), produtos.get(i).getPreco(), 
+						produtos.get(i).getDescricao(), produtos.get(i).getTipo());
+			}
+			else if (chave.equals(produtos.get(i).getDescricao()) && produtos.get(i).getTipo() == 3) {
+				novoProduto = new ProdutoNaoTributavel(produtos.get(i).getCodigo(), produtos.get(i).getPreco(), 
+						produtos.get(i).getDescricao(), produtos.get(i).getTipo());
 			}
 		}
 		temp.add(novoProduto);

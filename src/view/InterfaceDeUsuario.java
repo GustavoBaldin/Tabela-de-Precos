@@ -23,20 +23,20 @@ public class InterfaceDeUsuario {
 		{
 			switch(opcao)
 			{
-			case 1: //Insert product into the table
+			case 1: //Insira o produto na tabela
 				System.out.print("C�digo: ");
 				codigo = entrada.nextInt();
 				System.out.print("Pre�o: ");
 				preco = entrada.nextDouble();
 				System.out.print("Descri��o: ");
 				descricao = entrada.nextLine();
-				tabela.inserirProduto(codigo, preco,descricao);
+				tabela.inserirProduto(codigo, preco, descricao, tipo);
 				
 				// TO-DO
 				
 				break;
 
-			case 2: //Check for the price
+			case 2: //Checar o preço
 				System.out.print("C�digo: ");
 				codigo = entrada.nextInt();
 
