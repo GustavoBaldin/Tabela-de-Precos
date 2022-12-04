@@ -62,16 +62,6 @@ public class TabelaDePrecos {
 	public int inserirProduto(int codigo, double preco, String descricao, int tipo)
 	{
 		int retorno = 3;
-		System.out.println("Informe o código do produto: ");
-		codigo = in.nextInt();
-		System.out.println("Informe o preço do produto: ");
-		preco = in.nextDouble();
-		in.nextLine();
-		System.out.println("Informe a descrição do produto: ");
-		descricao = in.nextLine();
-		System.out.println("Escolha o tipo do produto: \n1 - Produto Digital, 2 - Produto Tributável, "
-				+ "3 - Produto Não Tributável");
-		tipo = in.nextInt();
 		
 		Produto novoProduto = null;
 		
@@ -96,7 +86,6 @@ public class TabelaDePrecos {
 
 		for (int i = 0; i < produtos.size(); i++) {
 			if (produtos.get(i).getCodigo() == codigo) {
-				System.out.println("ERRO: O produto informado já existe.");
 				retorno = 2;
 				break;
 			}
@@ -107,15 +96,11 @@ public class TabelaDePrecos {
 			try {
 				
 				produtos.add(novoProduto);
-				System.out.println("SUCESSO: O produto foi adicionado na lista.");
+				
 				retorno = 0;
 			}
 			catch (ArrayIndexOutOfBoundsException e) {
-				System.out.println("ERRO: A lista de produtos infelizmente está cheia. (" + e.getMessage() + ")");
 				retorno = 1;
-			}
-			catch (Exception e) {
-				System.out.println("ERRO: Algum erro de origem desconhecida aconteceu. (" + e.getMessage() + ")");
 			}
 			finally {
 				System.out.println("Operação finalizada.");
