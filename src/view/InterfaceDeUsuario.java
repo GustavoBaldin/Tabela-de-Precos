@@ -10,25 +10,29 @@ public class InterfaceDeUsuario {
 	
 	public void menu()
 	{
+		
 		// local variables
 		int codigo, opcao, tipo;
 		String descricao;
 		double preco;
 		
-		/* - Cadastrar produtos
+		/* 
 		- Apresentar os produtos: descrição e preço final
-		- Consultar o preço de um produto
+		
 		- Apresentar todos os produtos com preços dentro de uma faixa definida pelo cliente
 		*/
 		
-		System.out.println("0.Sair");
-		System.out.println("1.Inserir produto na tabela");
-		System.out.println("2.Consultar preço");
+		System.out.println("0 - Sair");
+		System.out.println("1 - Inserir produto na tabela");
+		System.out.println("2 - Consultar preço");
+		System.out.println("3 - Apresentar todos os produtos");
+		System.out.println("4 - Apresentar os produtos dentro de uma faixa de preço");
 		opcao = in.nextInt();
 		while(opcao!=0)
 		{
 			switch(opcao)
 			{
+			
 			case 1: //Insira o produto na tabela
 				System.out.println("Informe o código do produto: ");
 				codigo = in.nextInt();
@@ -63,19 +67,35 @@ public class InterfaceDeUsuario {
 				break;
 
 			case 2: //Checar o preço
-				System.out.print("C�digo: ");
+				System.out.print("Código: ");
 				codigo = in.nextInt();
 
-				// completar
-				
+				tabela.consultarPreco(codigo);
 				break;
+			
+			case 3:
+				tabela.exibirProdutos();
+				break;
+				
+			case 4:
+				System.out.println("Diga o máximo, em reais, que você aceita ver de produtos: ");
+				preco = in.nextDouble();
+				
+				tabela.consultarPreco(preco);
+				break;
+			
+			default:
+				break;
+				
 			}
-			System.out.println("0.Sair");
-			System.out.println("1.Inserir produto na tabela");
-			System.out.println("2.Consultar pre�o");
+			System.out.println("0 - Sair");
+			System.out.println("1 - Inserir produto na tabela");
+			System.out.println("2 - Consultar preço");
+			System.out.println("3 - Apresentar todos os produtos");
+			System.out.println("4 - Apresentar os produtos dentro de uma faixa de preço");
 			opcao = in.nextInt();
 		}
-
+		tabela.transferirDadosParaArquivos();
 
 	}
 	

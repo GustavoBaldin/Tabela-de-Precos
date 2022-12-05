@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import persistencia.Persistidor;
 
 /**
  * Classe que implementa o preço de um produto na tabela.
@@ -15,6 +16,7 @@ public class TabelaDePrecos {
 
 	private int capacidade;
 	private ArrayList<Produto> produtos = new ArrayList<Produto>(capacidade);
+	private Persistidor ps = new Persistidor();
 	
 
 	/**
@@ -81,14 +83,15 @@ public class TabelaDePrecos {
 			
 		}
 		
-
-		for (int i = 0; i < produtos.size(); i++) {
-			if (produtos.get(i).getCodigo() == codigo) {
-				retorno = 2;
-				break;
+		if (produtos.size() > 0) {	
+			for (int i = 0; i <= produtos.size(); i++) {
+	
+				if (produtos.get(i).getCodigo() == codigo) {
+					retorno = 2;
+					break;
+				}
 			}
 		}
-		
 		
 		if (retorno != 2) {	
 			try {
@@ -108,49 +111,7 @@ public class TabelaDePrecos {
 		return retorno;
 	}
 	
-	/**
-	* Método que insere direto um objeto do tipo Produto dentro da tabela
-	* 
-	* @param produto - O objeto do produto a ser inserido na tabela.
-	* @return Um inteiro informando a situação da inserção: 
-	* 0 - a inserção aconteceu sem problemas.
-	* 1 - inserção não aconteceu porque a tabela estava cheia.
-	* 2 - inserção não aconteceu porque já tem um produto com este código na tabela.
-	 */
-	public int inserirProduto(Produto produto) // method overloading
-										
-	{
-		int retorno = 3;
-		for (int i = 0; i < produtos.size(); i++) {
-			if (produtos.get(i).getCodigo() == produto.getCodigo()) {
-				System.out.println("ERRO: O produto informado já existe.");
-				retorno = 2;
-				break;
-			}
-		}
-		
-		
-		if (retorno != 2) {	
-			try {
-				
-				produtos.add(produto);
-				System.out.println("SUCESSO: O produto foi adicionado na lista.");
-				retorno = 0;
-			}
-			catch (ArrayIndexOutOfBoundsException e) {
-				System.out.println("ERRO: A lista de produtos infelizmente está cheia. (" + e.getMessage() + ")");
-				retorno = 1;
-			}
-			catch (Exception e) {
-				System.out.println("ERRO: Algum erro de origem desconhecida aconteceu. (" + e.getMessage() + ")");
-			}
-			finally {
-				System.out.println("Operação finalizada.");
-			}
-		}
-		
-		return retorno;
-	}
+	
 	
 	/**
 	 * Método que remove um produto da tabela.
@@ -206,7 +167,7 @@ public class TabelaDePrecos {
 	 * Exibe todos os produtos, com sua descrição e com o preço final.
 	 */
 	
-	public void exibirProduto() {
+	public void exibirProdutos() {
 		for (int i = 0; i < produtos.size(); i++) {
 			System.out.println("DESCRIÇÃO PRODUTO: " + produtos.get(i).getDescricao());
 			System.out.println("PREÇO FINAL: " + produtos.get(i).getPrecoFinal());
@@ -239,6 +200,21 @@ public class TabelaDePrecos {
 				System.out.println("PREÇO FINAL: " + produtos.get(i).getPrecoFinal());
 			}
 		}
+	}
+	
+	/**
+	 * Método que salva os dados de uma array inteira.
+	 */
+	
+	public void transferirDadosParaArquivos() {
+		ps.salvarData(produtos);
+	}
+	
+	/**
+	 * Método que inicializa os dados na tabela.
+	 */
+	public void carregarDadosNaTabela() {
+		produtos = ps.inicializarData();
 	}
 }
 

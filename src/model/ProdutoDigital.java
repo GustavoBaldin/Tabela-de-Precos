@@ -2,6 +2,8 @@ package model;
 
 public class ProdutoDigital extends Produto {
 
+	private static final long serialVersionUID = 1003L;
+	
 	private double precoFinal;
 	
 	public ProdutoDigital(int codigo, double preco, String descricao, int tipo) {

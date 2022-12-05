@@ -2,6 +2,9 @@ package model;
 
 public class ProdutoNaoTributavel extends Produto {
 
+
+	private static final long serialVersionUID = 1004L;
+	
 	private double precoFinal;
 	
 	public ProdutoNaoTributavel(int codigo, double preco, String descricao, int tipo) {

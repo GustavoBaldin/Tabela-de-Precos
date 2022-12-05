@@ -1,6 +1,11 @@
 package model;
 
-public abstract class Produto {
+import java.io.Serializable;
+
+public abstract class Produto implements Serializable {
+	
+	private static final long serialVersionUID = 1002L;
+	
 	private int codigo;
 	private int tipo;
 	private double preco;
