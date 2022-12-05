@@ -15,6 +15,12 @@ public class InterfaceDeUsuario {
 		String descricao;
 		double preco;
 		
+		/* - Cadastrar produtos
+		- Apresentar os produtos: descrição e preço final
+		- Consultar o preço de um produto
+		- Apresentar todos os produtos com preços dentro de uma faixa definida pelo cliente
+		*/
+		
 		System.out.println("0.Sair");
 		System.out.println("1.Inserir produto na tabela");
 		System.out.println("2.Consultar preço");

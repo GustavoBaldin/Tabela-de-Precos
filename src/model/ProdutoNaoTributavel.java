@@ -16,10 +16,12 @@ public class ProdutoNaoTributavel extends Produto {
 	 * @return precoFinal = O preço final.
 	 */
 	
+	@Override
 	public double definirPrecoFinal(double preco) {
 		return setPrecoFinal(preco + (preco * 0.01));
 	}
 
+	@Override
 	public double getPrecoFinal() {
 		return precoFinal;
 	}

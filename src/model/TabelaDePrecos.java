@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Classe que implementa o preço de um produto na tabela.
@@ -16,7 +15,6 @@ public class TabelaDePrecos {
 
 	private int capacidade;
 	private ArrayList<Produto> produtos = new ArrayList<Produto>(capacidade);
-	private Scanner in = new Scanner(System.in);
 	
 
 	/**
@@ -203,5 +201,45 @@ public class TabelaDePrecos {
 		
 		return temp;
 	}
-
+	
+	/**
+	 * Exibe todos os produtos, com sua descrição e com o preço final.
+	 */
+	
+	public void exibirProduto() {
+		for (int i = 0; i < produtos.size(); i++) {
+			System.out.println("DESCRIÇÃO PRODUTO: " + produtos.get(i).getDescricao());
+			System.out.println("PREÇO FINAL: " + produtos.get(i).getPrecoFinal());
+		}
+			
+	}
+	
+	/**
+	 * Faz a consulta e exibe o preço de um produto, dado um código
+	 * @param codigo - Código do produto.
+	 */
+	
+	public void consultarPreco(int codigo) {
+		for (int i = 0; i < produtos.size(); i++) {
+			if (produtos.get(i).getCodigo() == codigo) {
+				System.out.println("O preço deste produto é: " + produtos.get(i).getPrecoFinal());
+			}
+		}
+	}
+	
+	/**
+	 * Faz a consulta e exibe produtos abaixo (ou iguais) ao valor.
+	 * @param valor - Faixa de valores desejada.
+	 */
+	
+	public void consultarPreco(double valor) {
+		for (int i = 0; i < produtos.size(); i++) {
+			if (produtos.get(i).getPrecoFinal() <= valor) {
+				System.out.println("DESCRIÇÃO PRODUTO: " + produtos.get(i).getDescricao());
+				System.out.println("PREÇO FINAL: " + produtos.get(i).getPrecoFinal());
+			}
+		}
+	}
 }
+
+

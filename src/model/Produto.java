@@ -38,5 +38,6 @@ public abstract class Produto {
 		this.tipo = tipo;
 	}
 	
+	public abstract double getPrecoFinal();
 	public abstract double definirPrecoFinal(double preco);
 }
