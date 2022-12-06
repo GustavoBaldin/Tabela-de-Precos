@@ -42,6 +42,7 @@ public class Persistidor implements Serializable {
 	}
 	
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<Produto> inicializarData() {
 		
 		Object listaProdutos = null;
