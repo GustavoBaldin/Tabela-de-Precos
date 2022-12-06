@@ -5,7 +5,7 @@ import model.TabelaDePrecos;
 
 public class InterfaceDeUsuario {
 
-	private TabelaDePrecos tabela = new TabelaDePrecos(100);
+	private TabelaDePrecos tabela = new TabelaDePrecos();
 	private Scanner in = new Scanner(System.in);
 	
 	public void menu()
@@ -27,6 +27,8 @@ public class InterfaceDeUsuario {
 		System.out.println("2 - Consultar preço");
 		System.out.println("3 - Apresentar todos os produtos");
 		System.out.println("4 - Apresentar os produtos dentro de uma faixa de preço");
+		System.out.println("5 - Remover produto");
+		System.out.println("6 - Pesquisar por palavra-chave");
 		opcao = in.nextInt();
 		while(opcao!=0)
 		{
@@ -84,6 +86,20 @@ public class InterfaceDeUsuario {
 				tabela.consultarPreco(preco);
 				break;
 			
+			case 5:
+				System.out.println("Informe o código do produto que queres remover: ");
+				codigo = in.nextInt();
+				
+				tabela.removerProduto(codigo);
+				break;
+				
+			case 6:
+				System.out.println("Informe a palavra chave: ");
+				String chave = in.next();
+				
+				tabela.pesquisaPorPalavraChave(chave);
+				break;
+			
 			default:
 				break;
 				
@@ -93,6 +109,8 @@ public class InterfaceDeUsuario {
 			System.out.println("2 - Consultar preço");
 			System.out.println("3 - Apresentar todos os produtos");
 			System.out.println("4 - Apresentar os produtos dentro de uma faixa de preço");
+			System.out.println("5 - Remover produto");
+			System.out.println("6 - Pesquisar por palavra-chave");
 			opcao = in.nextInt();
 		}
 		tabela.transferirDadosParaArquivos();

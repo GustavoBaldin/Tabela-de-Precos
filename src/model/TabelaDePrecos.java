@@ -14,19 +14,22 @@ import persistencia.Persistidor;
 
 public class TabelaDePrecos {
 
-	private int capacidade;
-	private ArrayList<Produto> produtos = new ArrayList<Produto>(capacidade);
+
 	private Persistidor ps = new Persistidor();
+	private ArrayList<Produto> produtos = ps.inicializarData(); 
+	
+		
 	
 
 	/**
-	 * Construtor que inicializa a TabelaDePrecos com um tamanho pré-definido 
+	 * Construtor que inicializa a TabelaDePrecos 
 	 *
-	 * @param capacidade - A máxima capacidade da tabela
 	 */
-	public TabelaDePrecos(int capacidade)
+	public TabelaDePrecos()
 	{
-		this.capacidade = capacidade;
+		if (produtos == null) {
+			produtos = new ArrayList<Produto>();
+		}
 	}
 
 	/**
@@ -83,13 +86,12 @@ public class TabelaDePrecos {
 			
 		}
 		
-		if (produtos.size() > 0) {	
-			for (int i = 0; i <= produtos.size(); i++) {
-	
-				if (produtos.get(i).getCodigo() == codigo) {
-					retorno = 2;
-					break;
-				}
+		
+		for (int i = 0; i < produtos.size(); i++) {
+
+			if (produtos.get(i).getCodigo() == codigo) {
+				retorno = 2;
+				break;
 			}
 		}
 		
@@ -132,35 +134,23 @@ public class TabelaDePrecos {
 	
 	/**
 	 * Método que, dada uma palavra chave, procura na descrição de algum objeto se ela existe e retorna
-	 * o objeto em forma de Array para ser usado.
+	 * o produto em forma de sysouts.
 	 * 
-	 * @param chave - Palavra-Chave em String para ser pesquisada
-	 * @return Uma ArrayList simples com o objeto selecionado nos loops.
 	 */
 	
 
-	public ArrayList<Produto> pesquisaPorPalavraChave(String chave)
+	public void pesquisaPorPalavraChave(String chave)
 	{
-		ArrayList<Produto> temp = new ArrayList<Produto>(capacidade);
-		Produto novoProduto = null;
 		
 		for (int i = 0; i < produtos.size(); i++) {
-			if (chave.equals(produtos.get(i).getDescricao()) && produtos.get(i).getTipo() == 1) {
-				novoProduto = new ProdutoDigital(produtos.get(i).getCodigo(), produtos.get(i).getPreco(), 
-						produtos.get(i).getDescricao(), produtos.get(i).getTipo());
-			}
-			else if (chave.equals(produtos.get(i).getDescricao()) && produtos.get(i).getTipo() == 2) {
-				novoProduto = new ProdutoTributavel(produtos.get(i).getCodigo(), produtos.get(i).getPreco(), 
-						produtos.get(i).getDescricao(), produtos.get(i).getTipo());
-			}
-			else if (chave.equals(produtos.get(i).getDescricao()) && produtos.get(i).getTipo() == 3) {
-				novoProduto = new ProdutoNaoTributavel(produtos.get(i).getCodigo(), produtos.get(i).getPreco(), 
-						produtos.get(i).getDescricao(), produtos.get(i).getTipo());
+			if (produtos.get(i).getDescricao().contains(chave)) {
+				System.out.println("Produto código: " + produtos.get(i).getCodigo());
+				System.out.println("Preço do produto: " + produtos.get(i).getPreco());
+				System.out.println("Descrição do produto: " + produtos.get(i).getDescricao());
+				System.out.println("");
 			}
 		}
-		temp.add(novoProduto);
-		
-		return temp;
+
 	}
 	
 	/**
@@ -209,13 +199,8 @@ public class TabelaDePrecos {
 	public void transferirDadosParaArquivos() {
 		ps.salvarData(produtos);
 	}
+
 	
-	/**
-	 * Método que inicializa os dados na tabela.
-	 */
-	public void carregarDadosNaTabela() {
-		produtos = ps.inicializarData();
-	}
 }
 
 

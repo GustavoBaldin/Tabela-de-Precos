@@ -41,14 +41,14 @@ public class Persistidor implements Serializable {
 		
 	}
 	
-	@SuppressWarnings("unchecked")
+
 	public ArrayList<Produto> inicializarData() {
 		
-		ArrayList<Produto> listaProdutos = null;
+		Object listaProdutos = null;
 		
 		try {
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream("produtos.bin"));
-			listaProdutos = (ArrayList<Produto>) ois.readObject();
+			listaProdutos = ois.readObject();
 			ois.close();
 		}
 		catch (ClassNotFoundException e) {
@@ -56,10 +56,9 @@ public class Persistidor implements Serializable {
 		}
 		catch (IOException e) {
 			System.out.println("INFO DATA: Não há data para ser lida (ainda) ou houve erro de leitura.");
-			return listaProdutos;
 		}
 
-		return listaProdutos;
+		return (ArrayList<Produto>) listaProdutos;
 		
 		
 	}
